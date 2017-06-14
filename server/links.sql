@@ -81,3 +81,16 @@ CREATE TABLE abonent_table (
   comment varchar(3000)
 )
 CHARACTER SET = utf8;
+
+INSERT INTO bilding_table(name_street_id, bilding_namber,  lat, lng, comment) 
+VALUE (2, 28, 50.424373, 30.520549, 'Центральный офис');
+
+SELECT * FROM street_table st
+INNER JOIN bilding_table bt
+ON st.id = bt.name_street_id
+WHERE bt.name_street_id = 2;
+
+
+
+INSERT INTO bilding_table(name_street_id, bilding_namber,  lat, lng, comment) 
+VALUE (1, 27, 50.437589, 30.545477, '');

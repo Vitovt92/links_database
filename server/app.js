@@ -9,10 +9,7 @@ var bodyParser = require('body-parser');
 // SQL соединение
 
 var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'yjdfzcbcmrf',
-  database: 'links'
+  
 });
 
 connection.connect(function(error){
@@ -23,12 +20,15 @@ connection.connect(function(error){
     }
 });
 
-app.use(express.static('./client/public'));
+app.use(express.static('./../client/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+
+// Отдать клиенту улицы из базы.
+
 app.get('/streets', function(req, res) {
-   
+   console.log('got req');
    connection.query('SELECT * FROM street_table ORDER BY name_street_new', function(err, streets, fields){
        
   if (!!err){
@@ -39,8 +39,6 @@ app.get('/streets', function(req, res) {
  res.json(streets);
 }
 });
-
-
 });
 
 // Добавить новую улицу в БД
@@ -86,5 +84,27 @@ app.post('/remove_street',function(req, res){
     
 });
 
+// Отдать клиенту Дома из БД
 
-module.exports = app;
+app.post('/bildings_of_street', function(req, res) {
+    console.log('got /bildings_of_street request '+ req.body.idOfStreet);
+    var requestedStreet = {
+      name_street_id : req.body.idOfStreet
+  };
+    
+   connection.query('SELECT * FROM street_table st INNER JOIN bilding_table bt ON st.id = bt.name_street_id WHERE ?;', requestedStreet, function(err, bildings, fields){
+       
+  if (!!err){
+    console.log('Error in the query');
+}else {
+ console.log('successful quiry');
+ console.log(bildings);
+ res.json(bildings);
+}
+});
+});
+
+
+app.listen(3000, function(){
+  console.log('Listening on port 3000');
+});

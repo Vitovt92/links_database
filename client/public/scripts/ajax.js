@@ -58,7 +58,7 @@ $('.list_of_streets_buttom').on('click', function(){
     var tableTd = $('<td class="street_column_id">' + response[i].id + '</td>'+'<td class="street_column_new_name">' + response[i].name_street_new + '</td>'+'<td>' + response[i].name_street_old + '</td>' + '<td>' + response[i].comment  + '</td>'+'<td>'+'<a class="delete_street_button"> x </a>'+'</td>');
     var tableTr = $('<tr></tr>').addClass('street_table_row').append(tableTd);
         console.log('new row');
-    var tableTrHiden = $('<tr class="street_table_row_hiden"><td>test</td></tr>').hide();    
+    var tableTrHiden = $('<tr class="street_table_row_hiden"></tr>').hide();    
       $('.street_table').append(tableTr);
       $('.street_table').append(tableTrHiden);
     }
@@ -68,17 +68,49 @@ $('.list_of_streets_buttom').on('click', function(){
 // Добавить список домов в таблицу
     
 $('.streetHolder').on('click', '.street_column_new_name', function(){
-    console.log('show hiden row!');
    
-    console.log($(this).closest('.street_table_row').next('.street_table_row_hiden').css('display'));
-    if($(this).closest('.street_table_row').next('.street_table_row_hiden').css('display') === 'table-row'){
- 
-        console.log($(this).closest('.street_table_row').next('.street_table_row_hiden').css('display'));
-        $(this).closest('.street_table_row').next('.street_table_row_hiden').fadeOut();
-    } else {    $(this).closest('.street_table_row').next('.street_table_row_hiden').fadeIn();
-           }
-//    css('display', 'inline-table');
-})
+   var hidenRow = $(this).closest('.street_table_row').next('.street_table_row_hiden');
+   var clickedRow = $(this).closest('.street_table_row');
+    
+    var clickedRowId = clickedRow.find('.street_column_id').text();
+     console.log(clickedRowId);
+    if(hidenRow.css('display') === 'table-row'){
+         hidenRow.fadeOut();
+    } else {
+        var bildings = getBildingsFromServer();
+        addBildingsToStreetsHidenRow()
+        hidenRow.fadeIn();   
+        };  
+    
+     function addBildingsToStreetsHidenRow(){
+       var addingBildingRowHead = $('<th><td> Номер дома </td><td> Комментарий </td></th>');
+       var addingBildingRow = $('<tr></tr>');
+       var addingBildingColumn = $('<td></td>').text(bildings[0].bilding_namber) + $('<td></td>').text(bildings[0].comment
+);     
+       hidenRow.append(addingBildingRowHead);
+       addingBildingRow.append(addingBildingColumn);
+       hidenRow.append(addingBildingRow); 
+   }; 
+     function getBildingsFromServer(){
+        $.ajax('/bildings_of_street', {
+      
+        type: 'POST',
+        data: {
+            "idOfStreet": clickedRowId
+        },
+        success: function(result){
+            return result;
+            console.log(result);
+        }
+    }) 
+//         $.get('/bildings_of_street', function(response){
+//             console.log(response);
+//         });
+     }
+           });
+    
+  
+
     
     
 // Пометить улицу как удаленную
