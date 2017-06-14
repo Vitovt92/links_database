@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <title>HTML5</title>
+  <!--[if IE]>
+   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style>
+   article, aside, details, figcaption, figure, footer,header,
+   hgroup, menu, nav, section { display: block; }
+  </style>
+ </head>
+ <body>
+  <p>Привет, мир</p>
+     
+     <form class="add_new_street_form" action = "/add_new_street" method="post">
+       <p>
+         <label for="new_street_name_new">Современное название улицы</label>
+         </p>
+       <p>
+         <input type="text" name="new_street_name_new" class="new_street_name_new">
+         </p>
+         <p>
+         <label for="new_street_name_old">Устаревшее название улицы (не обязательно)</label>
+         </p>
+       <p>
+         <input type="text" name="new_street_name_old" class="new_street_name_old">
+         </p>
+          <p>
+         <label for="new_street_comments">Комментарии</label>
+         </p>
+       <p>
+         <input type="text" name="new_street_comments" class="new_street_comments">
+         </p>
+         <input type="submit" value="Добавить улицу">
+       <p>
+         
+         </p>     
+     </form>
+     
+     
+  <p class='streetHolder'></p>
+     
+ <script src='jquery.min.js'></script>
+ <script src='ajax.js'></script>
+ </body>
+</html>
+

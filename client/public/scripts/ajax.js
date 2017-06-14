@@ -1,0 +1,125 @@
+ 
+$(document).ready(function() {
+// Поиск площадок
+    
+$('.find_place_button').on('click', function(){
+  
+    $('.find_street_form').css('display', 'block');
+    
+    $.get('/streets', function(response){
+        
+      for(var i=0; i<response.length; i++){
+        
+        if(response[i].deleted){
+            continue;
+        }
+          
+        var nameOfStreetNew = response[i].name_street_new;
+        var nameOfStreetOld = '(' + response[i].name_street_old + ')';
+            
+        if (response[i].name_street_old == null){nameOfStreetOld = ""};
+            
+        var option = $('<option>').val(nameOfStreetNew + ' ' + nameOfStreetOld ).data('streetsID', response[i].id);
+        
+        console.log(option.data('streetsID'));
+        
+        $('#streets').append(option);
+            
+      }
+    })
+})
+    
+$('.find_street_form').on('submit', function(event){
+  event.preventDefault();
+  console.log('selected');
+  
+});
+    
+    
+// Показать список улиц
+    
+$('.list_of_streets_buttom').on('click', function(){
+ 
+    $.get('/streets', function(response){
+      console.log(response);
+     $('.street_table').remove();
+      var table = $('<table></table>').addClass('street_table');
+     // var tableTr = $('<tr></tr>').addClass('street_table_row');
+    
+      $('.streetHolder').append(table);
+    
+    for(var i=0; i<response.length;i++){
+          console.log(response[i].deleted);
+        if(response[i].deleted){
+            console.log(i+'breaked');
+            continue;
+        }
+        
+    var tableTd = $('<td class="street_column_id">' + response[i].id + '</td>'+'<td class="street_column_new_name">' + response[i].name_street_new + '</td>'+'<td>' + response[i].name_street_old + '</td>' + '<td>' + response[i].comment  + '</td>'+'<td>'+'<a class="delete_street_button"> x </a>'+'</td>');
+    var tableTr = $('<tr></tr>').addClass('street_table_row').append(tableTd);
+        console.log('new row');
+    var tableTrHiden = $('<tr class="street_table_row_hiden"><td>test</td></tr>').hide();    
+      $('.street_table').append(tableTr);
+      $('.street_table').append(tableTrHiden);
+    }
+ });
+   
+})
+// Добавить список домов в таблицу
+    
+$('.streetHolder').on('click', '.street_column_new_name', function(){
+    console.log('show hiden row!');
+   
+    console.log($(this).closest('.street_table_row').next('.street_table_row_hiden').css('display'));
+    if($(this).closest('.street_table_row').next('.street_table_row_hiden').css('display') === 'table-row'){
+ 
+        console.log($(this).closest('.street_table_row').next('.street_table_row_hiden').css('display'));
+        $(this).closest('.street_table_row').next('.street_table_row_hiden').fadeOut();
+    } else {    $(this).closest('.street_table_row').next('.street_table_row_hiden').fadeIn();
+           }
+//    css('display', 'inline-table');
+})
+    
+    
+// Пометить улицу как удаленную
+
+$('.streetHolder').on('click', '.delete_street_button', function(){
+    
+    var deleted_street_id = $(this).closest('.street_table_row').find('.street_column_id').text();
+     
+    if(ask_prevent_question("пометить улицу с id = " + deleted_street_id + " как удаленную?")){
+      console.log('deleted' + deleted_street_id);
+        
+      $(this).closest('.street_table_row').addClass('deleted');
+        
+      $.ajax('/remove_street', {
+        type: 'POST',
+        data: {
+            "id": deleted_street_id
+        }
+    })
+    };
+     
+});
+    
+// Добавление улиц в БД
+    
+$('.add_new_street_form').on('submit', function(event){
+    console.log("toot");
+    event.preventDefault();
+    var form = $(this);
+    $.ajax('/add_new_street', {
+        type:'POST',
+        data: form.serialize(),
+        success:function(result){
+            console.log('result');
+        }
+    })
+})
+ 
+    // Спросить, действительно
+    function ask_prevent_question(whatYouWhantToDelete){
+        return confirm("Вы уверены, что хотите " + whatYouWhantToDelete );
+};
+    
+});

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/slides.css">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <script>scriptPage()</script>
+	<title>Links Info</title>
+</head>
+
+<body>
+<nav>
+    <ul class="topnav" id="myTopnav">
+        <li><a href="#" id="logo">Links&nbsp;Info</a></li>
+       <li><a href="ukrtel_documents.html" class="nav" onclick="makeTable()">Документы</a></li>
+       <li><a href="data_base.html" class="nav" onclick="difrentColors1(event)">База данных</a></li>
+<!--
+        <li><a href="#" class="nav" onclick="difrentColors1(event)">Площадки</a></li>
+        <li><a href="#" class="nav" onclick="difrentColors1(event)">Радио</a></li>
+        <li><a href="#" class="nav" onclick="difrentColors1(event)">Свитчи</a></li>
+-->
+        <li style="float:right;"><input type="text" id="myInput" onkeyup="filterFunction()" placeholder="Фильтр..."></li>
+        <li class="icon_navmenu"><a href="javascript:void(0);" onclick="functionRelativeTopnav()">&#9776;</a></li>
+    </ul>
+</nav>
+
+<div id="contentofpage">
+
+</div>
+    <script src="scripts/info.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+        </body>
+
+</html>

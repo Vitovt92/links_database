@@ -1,0 +1,380 @@
+ul.topnav {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+    background-color: #2d8659;   /*#2d8659 #39ac39*/
+     position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0px 1px 5px grey;
+}
+#logo {
+    cursor:default;
+    background-color: #ffff80;/*#ff6666 #ff751a #ffff33*/
+    color:#0f3d0f;
+    font-family: logoFont;
+    font-size: 20px;
+    padding: 10px;
+    padding-bottom: 11px;
+}
+#contentofpage {
+    margin-top: 80px;
+}
+ul.topnav li {
+    float:left;
+/*    width: 10%;*/
+/*    height: 100%;*/
+}
+ul.topnav li:nth-child(3) {
+/*   width:13%;*/
+}
+ul.topnav li:nth-child(7) {
+   width:20%;
+}
+ul.topnav li a {
+    margin 0;
+    display: inline-block;
+    color: white;
+    text-align:center;
+    padding:14px 10px;
+     text-decoration:none;
+    transition: 0.3s;
+    width:100%;
+    height: 100%;
+}
+.icon_navmenu {
+    display: none;    
+}
+
+.icon_navmenu:hover {
+    background-color: #9fdf9f;
+    color:black;
+}
+ul.topnav li a.nav:hover, ul.topnav li a.nav.active {
+    background-color: #9fdf9f;
+    color: black;
+}
+
+/*Медиа запрос. Для создания "резиного" топ-меню.*/
+@media screen and (max-width:752px) {
+    ul.topnav li:not(:nth-child(2)){display:none;}
+    ul.topnav li.icon_navmenu {
+        float:right;
+        display:inline-block;
+    }
+    ul.topnav li:nth-child(7) {
+   width:100%;
+}
+}
+@media screen and (max-width:752px){
+    ul.topnav.responsive {position:relative;}
+    ul.topnav.responsive .icon_navmenu {
+        position: absolute;
+        right:0;
+        top:0;
+    }
+    ul.topnav.responsive li {
+        float:none;
+        display: inline;
+    }
+    ul.topnav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}
+/*Форма фильтра (поиск по странице)*/
+
+#myInput {
+    background-image: url('../foto/icon/toolbar_find.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 13px 45px;
+    border: 1px solid #ddd;
+    background-color:#ffff80; /* #ffff80*/
+}
+
+/*Таблица документов*/
+.listOfDox {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    width: 100%;
+    border-collapse:collapse;
+	 -moz-hyphens: auto;    /*чтобы текст в таблице переносился по правилам русского языка,  это нжуно чтобы столбики в таблице сохраняли свой размер, и все было красиво. */
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+}
+.listOfDox tr  {
+    border-bottom: 1px solid #ddd;
+  
+ 
+}
+.listOfDox tr td {padding: 10px;}
+.listOfDox tr:hover{
+	background-color: #9fdf9f;
+transition: 0.3s;
+}
+.fotoOfdox {
+    width: 30%;
+    margin: 0 auto;
+}
+.tableTh {
+    width: 100%;
+    margin: 0;
+    border-collapse:collapse;
+}
+ 
+.tableTh th {
+    padding: 10px;
+}
+.tableTh tr {
+    background-color:#ffff80;
+    
+}
+
+table.listOfDox tr td:nth-child(1), .tableTh th:nth-child(1)
+{
+    width: 3%;
+    text-align: center;
+}
+table.listOfDox tr td:nth-child(2), .tableTh th:nth-child(2){
+    width: 20%;
+}
+table.listOfDox tr td:nth-child(3), .tableTh tr th:nth-child(3){
+    width: 20%;
+}
+table.listOfDox tr td:nth-child(4), .tableTh tr th:nth-child(4){
+    width: 15%;
+}
+table.listOfDox tr td:nth-child(5), .tableTh tr th:nth-child(5){
+    width: 15%;
+}
+table.listOfDox tr td:nth-child(6), .tableTh tr th:nth-child(6){
+    width: 15%;
+}
+table.listOfDox tr td:nth-child(7), .tableTh tr th:nth-child(7){
+    width: 12%;
+    text-align: center;
+}
+
+ a.inaktiveColumn {
+    cursor: default !important;
+    background-color: #ffcccc !important; 
+}
+ a.inaktiveColumn:hover {
+    background-color: #ffcccc !important;  
+
+}
+/*Аккордион*/
+#listOfDox .accordion {
+    cursor:pointer;
+    transition: 0.4s;
+}
+ .panel {
+ 
+     background-color:white;
+   max-height: 0;
+    overflow: hidden;
+    transition: 0.8s ease-in-out;
+    opacity: 0;
+}
+#listOfDox .panel.show {
+   opacity: 1;
+    max-height: 600px;
+}
+div.accordion.active {
+    background-color: #9fdf9f;
+}
+
+/*Навигационное меню. документы*/
+ul.menuDox {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+    width:100%;
+    background-color: #f3f3f3;
+}
+li.menuDox {
+    float: left;
+    
+}
+li.menuDox a {
+    display:block;
+    color:#666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    cursor:pointer;
+}
+li.menuDox a:hover:not(.active) {
+    background-color: #ddd;
+}
+li a.active {
+    color: white;
+    background-color: #2d8659;
+}
+/*Слайды*/
+* {box-sizing:border-box}
+body {font-family: Verdana,sans-serif;margin:0}
+.mySlides {display:none}
+
+.fotoimg {
+    display:block;
+    width:90%;
+    margin: 0 auto;
+}
+
+/* Slideshow container */
+.slideshow-container {
+ /* max-width: 1000px;*/
+  position: relative;
+  margin: auto;
+  background-color:
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  background-color: rgba(0,0,0,0.1);
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+    color: white;
+}
+
+/* Caption text */
+.text {
+  color: black;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  text-align: center;
+}
+.infoDoctext {
+	background-color: rgba(255,255,255,0.8);
+}
+
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor:pointer;
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.dot.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+
+/* Шрифты*/
+@font-face {
+    font-family: logoFont;
+    src: url(fonts/open-sans/OpenSans-ExtraBoldItalic.ttf)
+}
+
+/************************************/
+/********* data_base.html           *******/
+/************************************/
+
+main {
+    
+
+}
+.column {
+    float:left;
+}
+aside .sidebar {
+    display: block;
+    background: #f0f0f0;
+    padding: 10px;
+    width:200px;  
+}
+
+.center_content {
+
+    margin-left: 30px;
+}
+
+.sidebar_button {
+    background-color: aquamarine;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.delete_street_button {
+    background-color: red;
+    padding: 2px 4px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.deleted {
+    background-color: red;
+}
+
+.find_street_form {
+    display:  none;
+}
+
+.add_new_street_form{
+    display: none;
+}
+
+.street_column_new_name{
+    cursor: pointer;
+}
+.street_table_row_hiden{
+/*    display: none;*/
+  
+}
