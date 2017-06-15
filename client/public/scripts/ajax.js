@@ -85,24 +85,28 @@ $('.streetHolder').on('click', '.street_column_new_name', function(){
      function addBildingsToStreetsHidenRow(){
        var addingBildingRowHead = $('<th><td> Номер дома </td><td> Комментарий </td></th>');
        var addingBildingRow = $('<tr></tr>');
-       var addingBildingColumn = $('<td></td>').text(bildings[0].bilding_namber) + $('<td></td>').text(bildings[0].comment
-);     
+       var addingBildingColumn = $('<td></td>').text(bildings[0].bilding_namber); 
+    
        hidenRow.append(addingBildingRowHead);
        addingBildingRow.append(addingBildingColumn);
        hidenRow.append(addingBildingRow); 
    }; 
      function getBildingsFromServer(){
-        $.ajax('/bildings_of_street', {
+       
+       var ansver = $.ajax('/bildings_of_street', {
       
         type: 'POST',
         data: {
             "idOfStreet": clickedRowId
         },
         success: function(result){
-            return result;
-            console.log(result);
+            
+            ansver = result;
+//            console.log(ansver);
         }
-    }) 
+    })
+         console.log(ansver.responseText);
+         return ansver.responseJSON;
 //         $.get('/bildings_of_street', function(response){
 //             console.log(response);
 //         });

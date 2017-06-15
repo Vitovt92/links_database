@@ -8,17 +8,20 @@ var bodyParser = require('body-parser');
 
 // SQL соединение
 
-var connection = mysql.createConnection({
-  
-});
+var DB_config = {
+  host: 'localhost',
+  user: 'links',
+  password: 'yjdfzcbcmrf',
+  database: 'linksDB'
+};
 
-connection.connect(function(error){
-    if(!!error){
-        console.log('Error');
-    } else {
-        console.log('Connected');
-    }
-});
+var connection;
+
+connection = mysql.createConnection(DB_config);
+
+
+
+
 
 app.use(express.static('./../client/public'));
 app.use(bodyParser.urlencoded({extended: false}));
@@ -29,6 +32,7 @@ app.use(bodyParser.json());
 
 app.get('/streets', function(req, res) {
    console.log('got req');
+        
    connection.query('SELECT * FROM street_table ORDER BY name_street_new', function(err, streets, fields){
        
   if (!!err){
@@ -37,8 +41,10 @@ app.get('/streets', function(req, res) {
  console.log('successful quiry');
 
  res.json(streets);
+
 }
 });
+    
 });
 
 // Добавить новую улицу в БД
