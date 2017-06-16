@@ -77,42 +77,44 @@ $('.streetHolder').on('click', '.street_column_new_name', function(){
     if(hidenRow.css('display') === 'table-row'){
          hidenRow.fadeOut();
     } else {
-        var bildings = getBildingsFromServer();
+//        var bildings = getBildingsFromServer();
         addBildingsToStreetsHidenRow()
         hidenRow.fadeIn();   
         };  
     
      function addBildingsToStreetsHidenRow(){
-       var addingBildingRowHead = $('<th><td> Номер дома </td><td> Комментарий </td></th>');
-       var addingBildingRow = $('<tr></tr>');
-       var addingBildingColumn = $('<td></td>').text(bildings[0].bilding_namber); 
-    
-       hidenRow.append(addingBildingRowHead);
-       addingBildingRow.append(addingBildingColumn);
-       hidenRow.append(addingBildingRow); 
-   }; 
-     function getBildingsFromServer(){
-       
-       var ansver = $.ajax('/bildings_of_street', {
       
-        type: 'POST',
-        data: {
-            "idOfStreet": clickedRowId
-        },
-        success: function(result){
-            
-            ansver = result;
-//            console.log(ansver);
+  
+       
+       var ansver = function(callback){
+          var data; 
+           $.ajax('/bildings_of_street', {
+      
+             type: 'POST',
+             data: {
+             "idOfStreet": clickedRowId
+             },
+            success: function(result){
+                 var addingBildingRowHead = $('<th><td> Номер дома </td><td> Комментарий </td></th>');
+                 var addingBildingRow = $('<tr></tr>');
+                 var addingBildingColumn = $('<td></td>').text(result[0].bilding_namber); 
+                
+                hidenRow.append(addingBildingRowHead);
+                addingBildingRow.append(addingBildingColumn);
+                hidenRow.append(addingBildingRow); 
+              console.log(result[0]);
+              callback(result);
+              console.log(data);
         }
     })
-         console.log(ansver.responseText);
-         return ansver.responseJSON;
-//         $.get('/bildings_of_street', function(response){
-//             console.log(response);
-//         });
+           
+         console.log(data);
+        
+
      }
-           });
     
+    
+  }; 
   
 
     
@@ -158,4 +160,5 @@ $('.add_new_street_form').on('submit', function(event){
         return confirm("Вы уверены, что хотите " + whatYouWhantToDelete );
 };
     
+})
 });
