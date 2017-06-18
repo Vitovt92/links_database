@@ -10,9 +10,9 @@ var bodyParser = require('body-parser');
 
 var DB_config = {
   host: 'localhost',
-  user: 'links',
+  user: 'root',
   password: 'yjdfzcbcmrf',
-  database: 'linksDB'
+  database: 'links'
 };
 
 var connection;

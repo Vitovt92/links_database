@@ -70,32 +70,31 @@ $('.list_of_streets_buttom').on('click', function(){
 $('.streetHolder').on('click', '.street_column_new_name', function(){
    
    var hidenRow = $(this).closest('.street_table_row').next('.street_table_row_hiden');
-   var clickedRow = $(this).closest('.street_table_row');
+   var clickedRow = $(this).closest('.street_table_row');    
+   var clickedRowId = clickedRow.find('.street_column_id').text();
     
-    var clickedRowId = clickedRow.find('.street_column_id').text();
      console.log(clickedRowId);
+    
     if(hidenRow.css('display') === 'table-row'){
          hidenRow.fadeOut();
     } else {
 //        var bildings = getBildingsFromServer();
-        addBildingsToStreetsHidenRow()
+        addBildingsToStreetsHidenRow();
         hidenRow.fadeIn();   
         };  
     
      function addBildingsToStreetsHidenRow(){
-      
-  
-       
-       var ansver = function(callback){
-          var data; 
+           
+           console.log('addBildingsToStreetsHidenRow');
+           
            $.ajax('/bildings_of_street', {
-      
              type: 'POST',
              data: {
              "idOfStreet": clickedRowId
              },
             success: function(result){
-                 var addingBildingRowHead = $('<th><td> Номер дома </td><td> Комментарий </td></th>');
+                console.log(result);
+                 var addingBildingRowHead = $('<td> Номер дома </td><td> Комментарий </td>');
                  var addingBildingRow = $('<tr></tr>');
                  var addingBildingColumn = $('<td></td>').text(result[0].bilding_namber); 
                 
@@ -107,15 +106,9 @@ $('.streetHolder').on('click', '.street_column_new_name', function(){
               console.log(data);
         }
     })
-           
-         console.log(data);
-        
-
-     }
-    
-    
+ 
   }; 
-  
+});
 
     
     
@@ -161,4 +154,4 @@ $('.add_new_street_form').on('submit', function(event){
 };
     
 })
-});
+//});
