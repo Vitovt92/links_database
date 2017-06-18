@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/slides.css">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <script>scriptPage()</script>
+	<title>Links Info</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+   <div>
+     <div>
+       <section>
+         <header>
+           <table>
+             <tr>
+               <td>Название улицы</td>
+               <td>Район</td>
+               <td>Комментарий</td>
+               <td><i class="material-icons">add</i></td>
+             </tr>  
+           </table>
+         </header>
+                
+              <div class="section_add_new_street_form">
+               <form class="add_new_street_form" action = "/add_new_street" method="post">
+                <p>
+                  <label for="new_street_name_new">Сучасна назва вулиці</label>
+                </p>
+                <p>
+                  <input type="text" required placeholder="Назва вулиці" name="new_street_name_new" class="new_street_name_new">
+                </p>
+                <p>
+                  <label for="new_street_name_old">Застаріла назва вулиці (не обов'язково)</label>
+                </p>
+                <p>
+                  <input type="text" name="new_street_name_old" class="new_street_name_old" placeholder="Застаріла назва">
+                </p>
+               <p>
+                 <label for="new_street_comments" >Коментарі (не обов'язково)</label>
+               </p>
+               <p>
+                 <input type="text" name="new_street_comments" class="new_street_comments" placeholder="Коментарі">
+               </p>
+                 <input type="submit" value="Додати вулицю">
+                  
+               </form>
+             </div>
+          <article class="street_article">   
+           <header class="street_header">
+             <table>
+               <tr>
+                 <td>Московская</td>
+                 <td>Печерский</td>
+                 <td>Метро Арсенальная</td>
+                 <td><i class="material-icons">build</i></td>
+               </tr>  
+             </table>
+           </header>
+             <div class="edit_this_street">
+                 <a class="delete_this_street"><i class="fa fa-trash"></i></a>
+              
+               <form class="edit_this_street_form" action = "/edit_this_street" method="post">
+                   <p>
+                   Современное назнание улицы: <span class="modern_name_of_street">Московская</span> <a class="change_button_edit_street_form"><i class="material-icons">settings</i></a>
+                   </p>
+            <div class="hiden_part_of_edit_street_form">
+                   <p>
+                  <label for="edit_street_name_new">Введите новое значение:</label>
+                </p>
+                <p>
+                  <input type="text" placeholder="" name="edit_street_name_new" class="edit_street_name_new">
+                </p>
+             </div>
+                <p>
+                  Устаревшее назнание улицы: <span class="old_name_of_street">-</span> <a class="change"><i class="material-icons">settings</i></a>    
+                </p>
+            <div class="hiden_part_of_edit_street_form">       
+                <p>
+                  <label for="edit_street_name_old">Введите устаревшее название улицы (не обязательно):</label>
+                </p>
+                <p>
+                  <input type="text" name="edit_street_name_old" class="edit_street_name_old" placeholder="">
+                </p>
+            </div>
+                   
+                <p>
+                   Район: <span class="edit_district_of_street">Печерск</span> <a class="change_button_edit_street_form"><i class="material-icons">settings</i></a>
+                </p>
+            <div class="hiden_part_of_edit_street_form">      
+               <p>
+                 <label for="new_street_comments">Выберите район расположения улицы:</label>
+               </p>
+               <p>
+                 <select name="districts">
+                   <option value="Голосеевский">Голосеевский</option>
+                   <option value="Дарницкий">Дарницкий</option>
+                   <option value="Деснянский">Деснянский</option>
+                   <option value="Днепровский">Днепровский</option>
+                   <option value="Оболонский">Оболонский</option>
+                   <option value="Печерский">Печерский</option>
+                   <option value="Подольский">Подольский</option>
+                   <option value="Святошинский">Святошинский</option>
+                   <option value="Соломенский">Соломенский</option>
+                   <option value="Шевченковский">Шевченковский</option>
+                   <option value="другое">Другое</option>
+                 </select>
+               </p>   
+            </div>     
+                <p>
+                   Комментарии: <span class="edit_comments_of_street">Метро Арсенальное</span> <a class="change_button_edit_street_form"><i class="material-icons">settings</i></a>
+                </p>
+            <div class="hiden_part_of_edit_street_form">      
+               <p>
+                 <label for="new_street_comments">Введите новый коментарии (не обязательно):</label>
+               </p>
+               <p>
+                 <input type="text" name="new_street_comments" class="new_street_comments" placeholder="">
+               </p>
+            </div>
+                 <input type="submit" value="Сохранить изминения"> <a class="abort_changes_to_street">Отменить изменения</a>
+                  
+               </form>
+             </div>
+          
+           <section>
+             <header>
+               <table>
+                 <tr>
+                   <td>Номер дома</td> 
+                   <td>Комментарий</td>
+                 </tr>  
+               </table>  
+             </header>  
+             <article>
+               <header>
+                 <table>
+                   <tr>
+                     <td>27</td>
+                     <td>Комментарий</td>
+                   </tr>
+                 </table>  
+               </header>
+               <div>
+                  <div>
+                    <div class="place_in_bilding">    
+                      Место: <span>Квартира 30</span>  
+                    </div>
+                    <div class="what_in_place_container">
+                      <div class="what_in_place">
+                        <span>Абонент </span><span>Рога и копыта</span>
+                      </div>  
+                    </div>
+                    <p>
+                      
+                    </p>
+                  </div>
+                   
+                   
+               </div>     
+             </article>  
+           </section>  
+         </article>
+       </section>  
+     </div> 
+   </div> 
+    
+</body>
+    
+</html>
