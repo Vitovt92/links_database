@@ -1,3 +1,8 @@
+div, p, h1, h1, td, tr, a {
+    margin: 0px;
+    padding: 0px;
+}
+
 ul.topnav {
     list-style-type:none;
     margin:0;
@@ -367,8 +372,9 @@ aside .sidebar {
     display:  none;
 }
 
-.add_new_street_form{
-    display: none;
+.section_add_new_street_form{
+   display: none;
+    background-color: darkseagreen;
 }
 
 .street_column_new_name{
@@ -377,4 +383,56 @@ aside .sidebar {
 .street_table_row_hiden{
 /*    display: none;*/
   
+}
+
+.street_header{
+    background-color: bisque;
+}
+
+.edit_this_street{
+    background-color: coral;
+    display:none;
+}
+
+ .bilding_container {
+    background-color: cornflowerblue;
+}
+.info_of_street{
+    background-color: darkturquoise;
+/*    display:none;*/
+}
+
+.places_in_bilding_hiden{
+    background-color: floralwhite;
+    display: none;
+}
+
+.show_new_street_form_button{
+    background-color: red;
+    cursor: pointer;
+}
+
+.street_header {
+    cursor: pointer;
+}
+.show_edit_form_table{
+    padding: 5px;
+}
+.show_edit_form_table:hover {
+    background-color:firebrick;
+}
+
+.change_button_edit_street_form {
+    cursor: pointer;
+}
+
+.change_button_edit_street_form:hover{
+    background-color: white;
+}
+
+.hiden_part_of_edit_street_form{
+    display:none;
+}
+.bilding_header {
+    cursor:pointer;
 }
