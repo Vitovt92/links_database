@@ -79,32 +79,39 @@ $('.streetHolder').on('click', '.street_column_new_name', function(){
          hidenRow.fadeOut();
     } else {
 //        var bildings = getBildingsFromServer();
-        addBildingsToStreetsHidenRow();
+        var URL_bildingsOfStreet = '/bildings_of_street';
+        var idOfstreet = {
+            "idOfStreet": clickedRowId
+        }
+        var addBildingRow = addBildingRowToTable;
+        ajaxPostReq(URL_bildingsOfStreet,idOfstreet, addBildingRow);
         hidenRow.fadeIn();   
         };  
-    
-     function addBildingsToStreetsHidenRow(){
-           
-           console.log('addBildingsToStreetsHidenRow');
-           
-           $.ajax('/bildings_of_street', {
-             type: 'POST',
-             data: {
-             "idOfStreet": clickedRowId
-             },
-            success: function(result){
-                console.log(result);
+           function addBildingRowToTable(bildings){
                  var addingBildingRowHead = $('<td> Номер дома </td><td> Комментарий </td>');
                  var addingBildingRow = $('<tr></tr>');
-                 var addingBildingColumn = $('<td></td>').text(result[0].bilding_namber); 
+                 var addingBildingColumn = $('<td></td>').text(bildings[0].bilding_namber); 
                 
                 hidenRow.append(addingBildingRowHead);
                 addingBildingRow.append(addingBildingColumn);
                 hidenRow.append(addingBildingRow); 
-              console.log(result[0]);
-              callback(result);
-              console.log(data);
+              console.log(bildings[0]);
+            
+ };
+     function ajaxPostReq(urlToServer, dataToServer, doFunctionOnSuccess){
+           var test;
+           console.log('addBildingsToStreetsHidenRow');
+           
+           $.ajax(urlToServer, {
+             type: 'POST',
+             data: dataToServer,
+            success: function(result){
+                doFunctionOnSuccess(result);
+             
+              
+                 
         }
+               
     })
  
   }; 
