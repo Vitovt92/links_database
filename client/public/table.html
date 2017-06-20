@@ -14,14 +14,14 @@
 <body>
    <div>
      <div>
-       <section>
+       <section class="container_of_streets">
          <header>
            <table>
              <tr>
                <td>Название улицы</td>
                <td>Район</td>
                <td>Комментарий</td>
-               <td><i class="material-icons">add</i></td>
+               <td><a class="show_new_street_form_button"><i class="material-icons">add</i></a></td>
              </tr>  
            </table>
          </header>
@@ -54,10 +54,10 @@
            <header class="street_header">
              <table>
                <tr>
-                 <td>Московская</td>
-                 <td>Печерский</td>
-                 <td>Метро Арсенальная</td>
-                 <td><i class="material-icons">build</i></td>
+                 <td class="street_header_td">Московская</td>
+                 <td class="street_header_td">Печерский</td>
+                 <td class="street_header_td">Метро Арсенальная</td>
+                 <td class="show_edit_form_table"><i class="material-icons">build</i></td>
                </tr>  
              </table>
            </header>
@@ -65,101 +65,153 @@
                  <a class="delete_this_street"><i class="fa fa-trash"></i></a>
               
                <form class="edit_this_street_form" action = "/edit_this_street" method="post">
-                   <p>
-                   Современное назнание улицы: <span class="modern_name_of_street">Московская</span> <a class="change_button_edit_street_form"><i class="material-icons">settings</i></a>
-                   </p>
-            <div class="hiden_part_of_edit_street_form">
-                   <p>
-                  <label for="edit_street_name_new">Введите новое значение:</label>
-                </p>
-                <p>
-                  <input type="text" placeholder="" name="edit_street_name_new" class="edit_street_name_new">
-                </p>
-             </div>
-                <p>
-                  Устаревшее назнание улицы: <span class="old_name_of_street">-</span> <a class="change"><i class="material-icons">settings</i></a>    
-                </p>
-            <div class="hiden_part_of_edit_street_form">       
-                <p>
-                  <label for="edit_street_name_old">Введите устаревшее название улицы (не обязательно):</label>
-                </p>
-                <p>
-                  <input type="text" name="edit_street_name_old" class="edit_street_name_old" placeholder="">
-                </p>
-            </div>
+                   <div class='block_of_edit_street_form'>
+                     <p>
+                       Современное назнание улицы: <span class="modern_name_of_street">Московская</span> <i class="material-icons change_button_edit_street_form">settings</i>
+                     </p>
+                     <div class="hiden_part_of_edit_street_form">
+                       <p>
+                         <label for="edit_street_name_new">Введите новое значение:</label>
+                       </p>
+                       <p>
+                         <input type="text" placeholder="" name="edit_street_name_new" class="edit_street_name_new">
+                       </p>
+                     </div>
+                   </div>
+                   <div class='block_of_edit_street_form'>
+                     <p>
+                       Устаревшее назнание улицы: <span class="old_name_of_street">-</span><i class="material-icons change_button_edit_street_form">settings</i>    
+                     </p>
+                     <div class="hiden_part_of_edit_street_form">       
+                       <p>
+                         <label for="edit_street_name_old">Введите устаревшее название улицы (не обязательно):</label>
+                       </p>
+                       <p>
+                         <input type="text" name="edit_street_name_old" class="edit_street_name_old" placeholder="">
+                       </p>
+                    </div>
+                   </div>
+                   <div class='block_of_edit_street_form'>
+                     <p>
+                       Район: <span class="edit_district_of_street">Печерск</span> <i class="material-icons change_button_edit_street_form">settings</i>
+                     </p>
+                     <div class="hiden_part_of_edit_street_form">      
+                       <p>
+                         <label for="new_street_comments">Выберите район расположения улицы:</label>
+                       </p>
+                       <p>
+                         <select name="districts">
+                           <option value="Голосеевский">Голосеевский</option>
+                           <option value="Дарницкий">Дарницкий</option>
+                           <option value="Деснянский">Деснянский</option>
+                           <option value="Днепровский">Днепровский</option>
+                           <option value="Оболонский">Оболонский</option>
+                           <option value="Печерский">Печерский</option>
+                           <option value="Подольский">Подольский</option>
+                           <option value="Святошинский">Святошинский</option>
+                           <option value="Соломенский">Соломенский</option>
+                           <option value="Шевченковский">Шевченковский</option>
+                           <option value="другое">Другое</option>
+                        </select>
+                       </p>   
+                     </div>
+                   </div>
+                   <div class="hiden_part_of_edit_street_form"> 
+                     <p>
+                       Комментарии: <span class="edit_comments_of_street">Метро Арсенальное</span> <i class="material-icons change_button_edit_street_form">settings</i>
+                     </p>
+                     <div class="hiden_part_of_edit_street_form">      
+                         <p>
+                           <label for="new_street_comments">Введите новый коментарии (не обязательно):</label>
+                         </p>
+                         <p>
+                           <input type="text" name="new_street_comments" class="new_street_comments" placeholder="">
+                         </p>
+                     </div>
+                   </div>
                    
-                <p>
-                   Район: <span class="edit_district_of_street">Печерск</span> <a class="change_button_edit_street_form"><i class="material-icons">settings</i></a>
-                </p>
-            <div class="hiden_part_of_edit_street_form">      
-               <p>
-                 <label for="new_street_comments">Выберите район расположения улицы:</label>
-               </p>
-               <p>
-                 <select name="districts">
-                   <option value="Голосеевский">Голосеевский</option>
-                   <option value="Дарницкий">Дарницкий</option>
-                   <option value="Деснянский">Деснянский</option>
-                   <option value="Днепровский">Днепровский</option>
-                   <option value="Оболонский">Оболонский</option>
-                   <option value="Печерский">Печерский</option>
-                   <option value="Подольский">Подольский</option>
-                   <option value="Святошинский">Святошинский</option>
-                   <option value="Соломенский">Соломенский</option>
-                   <option value="Шевченковский">Шевченковский</option>
-                   <option value="другое">Другое</option>
-                 </select>
-               </p>   
-            </div>     
-                <p>
-                   Комментарии: <span class="edit_comments_of_street">Метро Арсенальное</span> <a class="change_button_edit_street_form"><i class="material-icons">settings</i></a>
-                </p>
-            <div class="hiden_part_of_edit_street_form">      
-               <p>
-                 <label for="new_street_comments">Введите новый коментарии (не обязательно):</label>
-               </p>
-               <p>
-                 <input type="text" name="new_street_comments" class="new_street_comments" placeholder="">
-               </p>
-            </div>
                  <input type="submit" value="Сохранить изминения"> <a class="abort_changes_to_street">Отменить изменения</a>
                   
                </form>
              </div>
           
-           <section>
-             <header>
-               <table>
-                 <tr>
-                   <td>Номер дома</td> 
-                   <td>Комментарий</td>
-                 </tr>  
-               </table>  
-             </header>  
-             <article>
-               <header>
+           <section class="info_of_street">
+ 
+             <article class='bilding_container'>
+               <header class="bilding_header">
                  <table>
                    <tr>
-                     <td>27</td>
-                     <td>Комментарий</td>
+                     <td>Дом номер: 27</td>
+                     <td>Комментарий:</td>
                    </tr>
                  </table>  
                </header>
-               <div>
+               <div class="places_in_bilding_hiden">
                   <div>
                     <div class="place_in_bilding">    
-                      Место: <span>Квартира 30</span>  
+                        <p>Место: Квартира 30 </p>
+                        <p class="place_comments">Комментарии:</p>
                     </div>
                     <div class="what_in_place_container">
                       <div class="what_in_place">
-                        <span>Абонент </span><span>Рога и копыта</span>
+                        <p class="subscriber_name">Абонент Рога и копыта</p>
+                        <p class="subscriber_comments">Комментарии:</p>
+                      </div>
+                      <div class="info_place">
+                          ЗДЕСЬ БУДЕТ ПОЛНАЯ ИНФОРМАЦИЯ ОБ АБОНЕНТЕ, СПОСОБЕ ЕГО ПОДКЛЮЧЕНИЯ, ОБОРУДОВАНИЕ РАСПОЛОЖЕННОЕ НА ПЛОЩАДКЕ. НОМЕР ПОРТА В КОТОРЫЙ ПОДКЛЮЧЕН АБОНЕНТ.
+                      </div>
+                      </div>  
+                    
+                  </div>
+                   <div>
+                    <div class="place_in_bilding">    
+                        <p>Место: 2 этаж </p>
+                        <p class="place_comments">Комментарии:</p>
+                    </div>
+                    <div class="what_in_place_container">
+                      <div class="what_in_place">
+                        <p><span>Абонент </span><span>Копыта и КО</span></p>
+                        <div class="info_place"></div>
                       </div>  
                     </div>
-                    <p>
-                      
-                    </p>
-                  </div>
+                  </div>                  
                    
+               </div>     
+             </article>  
+             <article class='bilding_container'>
+               <header class="bilding_header">
+                 <table>
+                   <tr>
+                     <td>Дом номер: 29</td>
+                     <td>Комментарий:</td>
+                   </tr>
+                 </table>  
+               </header>
+               <div class="places_in_bilding_hiden">
+                  <div>
+                    <div class="place_in_bilding">    
+                      Место: <span>Квартира 30</span> 
+                        <p class="place_comments">Комментарии:</p>
+                    </div>
+                    <div class="what_in_place_container">
+                      <div class="what_in_place">
+                        <p><span>Абонент </span><span>Рога и копыта</span></p>
+                        <div class="info_place"></div>
+                      </div>  
+                    </div>
+                  </div>
+                   <div>
+                    <div class="place_in_bilding">    
+                      Место: <span>Квартира 33</span>
+                        <p class="place_comments">Комментарии:</p>
+                    </div>
+                    <div class="what_in_place_container">
+                      <div class="what_in_place">
+                        <p><span>Абонент </span><span>Копыта и КО</span></p>
+                        <div class="info_place"></div>
+                      </div>  
+                    </div>
+                  </div>                  
                    
                </div>     
              </article>  
@@ -167,8 +219,9 @@
          </article>
        </section>  
      </div> 
-   </div> 
-    
+   </div>
+<script src="jquery/jquery.min.js"></script>
+<script src="scripts/bildings_table.js"></script>    
 </body>
     
 </html>
