@@ -33,13 +33,21 @@ $('.container_of_streets').on('click', '.bilding_header', function(){
     showHide(placesInBildingHiden);
 })
 
-    
+  // Показать или спрятать описание абонента.  
     $('.container_of_streets').on('click', '.what_in_place', function(){
     var infoPlace = $(this).closest('.what_in_place_container').find('.info_place');
-    
     showHide(infoPlace);
 })
 
+  
+// Показать список улиц
+    
+$('.list_of_streets_buttom').on('click', function(){
+  var urlToServer = '/streets';
+    var doWhithRespons;
+  ajaxGetReq(urlToServer, doWhithRespons);
+   
+})    
     
 function showHide(hidenElement){
   if(hidenElement.css('display') === 'block'){
