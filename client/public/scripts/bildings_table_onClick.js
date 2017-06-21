@@ -44,8 +44,9 @@ $('.container_of_streets').on('click', '.bilding_header', function(){
     
 $('.list_of_streets_buttom').on('click', function(){
   var urlToServer = '/streets';
-    var doWhithRespons;
-  ajaxGetReq(urlToServer, doWhithRespons);
+  var doWhithRespons = appendStreetTable;
+  
+    ajaxGetReq(urlToServer, doWhithRespons);
    
 })    
     
