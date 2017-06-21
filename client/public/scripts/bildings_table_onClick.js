@@ -1,9 +1,10 @@
 $(document).ready(function() {
 
     //показать или спрятать форму добавления новой улицы
-$('.show_new_street_form_button').on('click', function(){
+$('.container_of_streets').on('click', '.show_new_street_form_button', function(){
     var sectionAddNewStreetForm = $('.section_add_new_street_form');
-    
+    sectionAddNewStreetForm.empty();
+    sectionAddNewStreetForm.append(appendAddNewStreetForm());
     showHide(sectionAddNewStreetForm);
 })
 

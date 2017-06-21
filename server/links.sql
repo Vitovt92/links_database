@@ -83,7 +83,7 @@ CREATE TABLE abonent_table (
 CHARACTER SET = utf8;
 
 INSERT INTO bilding_table(name_street_id, bilding_namber,  lat, lng, comment) 
-VALUE (2, 28, 50.424373, 30.520549, 'Центральный офис');
+VALUE (13, 28, 50.424373, 30.520549, 'Центральный офис');
 
 SELECT * FROM street_table st
 INNER JOIN bilding_table bt
