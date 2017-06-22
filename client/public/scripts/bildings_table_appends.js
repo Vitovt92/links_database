@@ -2,7 +2,7 @@
 // Добавить таблицу с информацией по улицам на страницу
 
 function resAndAppendStreetTable(){
-    var urlToServer = '/streets';
+    var urlToServer = '/streets/showTable';
     var doWhithRespons = appendStreetTable;
   
     ajaxGetReq(urlToServer, doWhithRespons);
