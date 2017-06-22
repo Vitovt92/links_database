@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 // SQL соединение
 
-var DB_config = {
+var db_config = {
   host: 'localhost',
   user: 'links',
   password: 'yjdfzcbcmrf',
@@ -17,7 +17,30 @@ var DB_config = {
 
 var connection;
 
-connection = mysql.createConnection(DB_config);
+
+function handleDisconnect() {
+  connection = mysql.createConnection(db_config); // Recreate the connection, since
+                                                  // the old one cannot be reused.
+
+  connection.connect(function(err) {              // The server is either down
+    if(err) {                                     // or restarting (takes a while sometimes).
+      console.log('error when connecting to db:', err);
+      setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
+    }                                     // to avoid a hot loop, and to allow our node script to
+  });                                     // process asynchronous requests in the meantime.
+                                          // If you're also serving http, display a 503 error.
+  connection.on('error', function(err) {
+    console.log('db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+      handleDisconnect();                         // lost due to either server restart, or a
+    } else {                                      // connnection idle timeout (the wait_timeout
+      throw err;                                  // server variable configures this)
+    }
+  });
+}
+
+handleDisconnect();
+//connection = mysql.createConnection(DB_config);
 
 
 
@@ -55,18 +78,19 @@ app.post('/add_new_street',function(req, res){
     var street = {
       name_street_new: req.body.new_street_name_new,
       name_street_old: req.body.new_street_name_old,
-      comment: req.body.new_street_comments
+      comment: req.body.new_street_comments,
+      district: req.body.new_street_district
     };
    
     var query = connection.query('insert into street_table set ?', street, function(err,resalt){
     if(err){
     console.error(err);
-    
+     res.json('Ошибка добавления улицы в базу');
 }
   console.error(resalt);
 });
-    
-    res.json('Street added');
+   res.json('Вы успешно добавили улицу ' + street.name_street_new + ' в базу');  
+   
 })
 
 // Пометить улицу как удаленную

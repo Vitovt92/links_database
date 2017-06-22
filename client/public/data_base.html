@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/slides.css">
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<!--  -------  links for icons ------ -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--    -----------------    -->
     <script>scriptPage()</script>
 	<title>Links Info</title>
 </head>
@@ -39,7 +43,10 @@
   <section class="sidebar_button side_button_5">Список Оборудования</section>
 </aside>
   <div class="column center_content">
+    
+      <section class="container_of_streets"></section>
       
+<!--
   <section>
     <form class="find_street_form">
      <p>
@@ -56,33 +63,9 @@
       
       
   </section>
+-->
       
-  <section class="section_add_new_street_form">
-       <form class="add_new_street_form" action = "/add_new_street" method="post">
-       <p>
-         <label for="new_street_name_new">Сучасна назва вулиці</label>
-         </p>
-       <p>
-         <input type="text" required placeholder="Назва вулиці" name="new_street_name_new" class="new_street_name_new">
-         </p>
-         <p>
-         <label for="new_street_name_old">Застаріла назва вулиці (не обов'язково)</label>
-         </p>
-       <p>
-         <input type="text" name="new_street_name_old" class="new_street_name_old" placeholder="Застаріла назва">
-         </p>
-          <p>
-         <label for="new_street_comments" >Коментарі (не обов'язково)</label>
-         </p>
-       <p>
-         <input type="text" name="new_street_comments" class="new_street_comments" placeholder="Коментарі">
-         </p>
-         <input type="submit" value="Додати вулицю">
-       <p>
-         
-         </p>     
-     </form>
-  </section>
+
   <div class="streetHolder"></div>
  </div> 
 </div>
@@ -93,7 +76,10 @@
     <script src="scripts/info.js"></script>
     <script src="scripts/main.js"></script>
     <script src='jquery/jquery.min.js'></script>
-    <script src='scripts/ajax.js'></script>
+    <script src='scripts/bildings_table_ajax.js'></script>
+    <script src='scripts/bildings_table_appends.js'></script>
+    <script src='scripts/bildings_table_onClick.js'></script>
+    <script src='scripts/bildings_table_onSubmit.js'></script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
         </body>
 

@@ -17,9 +17,16 @@ $('.container_of_streets').on('click', '.street_header_td', function(){
 
     // показать или спрятать форму редактирования конкретрой улицы
 $('.container_of_streets').on('click', '.show_edit_form_table', function(){
-    var editThisStreet = $(this).closest('.street_article').find('.edit_this_street');
     
+    var divEditThisStreet = $('<div></div>').addClass('edit_this_street');
+    $(this).closest('.street_header').after(divEditThisStreet);
+    var thisStreet = {};
+    
+    var editThisStreet = $(this).closest('.street_article').find('.edit_this_street');
+    editThisStreet.empty();
+    editThisStreet.append(createEditThisStreetForm(thisStreet));
     showHide(editThisStreet);
+    console.log('click');
 })
     // показать или спрятать части формы для редактирования улицы
 $('.container_of_streets').on('click', '.change_button_edit_street_form', function(){
@@ -44,13 +51,12 @@ $('.container_of_streets').on('click', '.bilding_header', function(){
 // Показать список улиц
     
 $('.list_of_streets_buttom').on('click', function(){
-  var urlToServer = '/streets';
-  var doWhithRespons = appendStreetTable;
-  
-    ajaxGetReq(urlToServer, doWhithRespons);
-   
-})    
     
+    resAndAppendStreetTable();   
+})    
+ 
+    
+// Функция показать/спрятать элемент    
 function showHide(hidenElement){
   if(hidenElement.css('display') === 'block'){
       hidenElement.fadeOut(); 
