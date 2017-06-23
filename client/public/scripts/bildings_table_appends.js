@@ -15,7 +15,6 @@ function appendStreetTable(response){
      var sectionAddNewStreetForm = $('<div></div>').addClass('section_add_new_street_form');
      var streetArticle = $('<article></article>').addClass('street_article');
      
-
      containerOfStreets.empty(); // Предварительно очистить єлемент от всего.
       
      containerOfStreets.append(nameOfColumnsHeader); // Добавить хедер таблицы
@@ -31,13 +30,12 @@ function addStreetRow(streetsObject){
    
      var nameOfNeededProp = ["name_street_new", "name_street_old", "district", "comment"];
      var classOfTd = 'street_header_td'
-     
+     var streetArticle = $('<article></article>').addClass('street_article');  
      var tr = $('<tr></tr>');
-    
      var streetHeader = $('<header></header>').addClass('street_header');
      var table = $('<table></table>');
-    
-    var appendedColumns = createTableColumnUsingObjProp(streetsObject, nameOfNeededProp, classOfTd);
+     var appendedColumns = createTableColumnUsingObjProp(streetsObject, nameOfNeededProp, classOfTd);
+     var divEditThisStreet = $('<div></div>').addClass('edit_this_street');
     
      tr.append(appendedColumns);
     
@@ -46,47 +44,15 @@ function addStreetRow(streetsObject){
      streetHeader.append(table);
      streetHeader.data('street_id', streetsObject.id);
     
-    containerOfStreets.append(streetHeader);
-  
+     containerOfStreets.append(streetArticle);
+    
+     streetArticle.append(streetHeader); 
+     streetArticle.append(divEditThisStreet); 
 };
 }
 
 
 
-// Берет объект object, и создает колонки таблицы. Используя только те свойства объекта которые указаны в массиве propWeNeedArr. Еще добавляет колонкам CSS класс classOfTd
-
-function createTableColumnUsingObjProp(object, propWeNeedArr, classOfTd){
-    if (!classOfTd){ classOfTd = ''};
-    
-    var iconBild = '<td class="show_edit_form_table"><i class="material-icons">build</i></td>';
-    var columns = '';
-    
-    for (objProp in object){
-        propWeNeedArr.forEach(function(item, i, arr){
-            if (objProp === item){
-                console.log(objProp);
-            if (object[objProp] === null){
-                columns += '<td class="' + classOfTd + '">' + '</td>'; 
-             } else {
-                columns += '<td class="' + classOfTd + '">' + object[objProp] + '</td>';
-             }
-   
-            }
-        });
-            
-    }
-     columns += iconBild;
-        
-             if (object.deleted){
-                 columns = '';
-             }
-    return columns;
-}
-
-// Добавить сообщение message в элемент elementToAppend
-function appendMessageNewStreet(elementToAppend, message){
-    elementToAppend.append(message);
-};
 
 // Создать форму добавления улицы
 function appendAddNewStreetForm() {
@@ -137,7 +103,7 @@ function appendAddNewStreetForm() {
 // Создать форму редактирования улицы
 function createEditThisStreetForm(thisStreet){
     var editForm = '<a class="delete_this_street"><i class="fa fa-trash"></i></a>'+
-                   '<form class="edit_this_street_form" action = "/edit_this_street" method="post">'+
+                   '<form class="edit_this_street_form">'+
                    '<div class="block_of_edit_street_form">'+
                      '<p>'+
                        'Современное назнание улицы: <span class="modern_name_of_street">' +

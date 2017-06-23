@@ -1,10 +1,10 @@
 // Добавление улиц в БД
     
 $('.container_of_streets').on('submit', '.add_new_street_form', function(event){
-    console.log("toot");
+  
     event.preventDefault();
     var form = $(this);
-    var urlToServer = '/add_new_street';
+    var urlToServer = '/streets/add_new_street';
     var dataToServer = form.serialize();
     
     var sectionAddNewStreetForm = form.closest('.section_add_new_street_form');
@@ -12,8 +12,6 @@ $('.container_of_streets').on('submit', '.add_new_street_form', function(event){
     appendMessageNewStreet(sectionAddNewStreetForm, );
     
     ajaxPostReq(urlToServer, dataToServer, doFunctionOnSuccess)
-    
-    
     
     function doFunctionOnSuccess(result){
         console.log(result);
@@ -25,3 +23,21 @@ $('.container_of_streets').on('submit', '.add_new_street_form', function(event){
         form.fadeOut();
     };
 })
+
+// Редактирование улиц
+
+$('.container_of_streets').on('submit', '.edit_this_street_form', function(event){
+
+    event.preventDefault();
+    var form = $(this);
+    var urlToServer = {
+        edit_street_name_new: ,
+        edit_street_name_old: ,
+        districts: ,
+        new_street_comments
+    };
+    
+    var dataToServer = form.serialize();
+    console.log(dataToServer);
+    
+});

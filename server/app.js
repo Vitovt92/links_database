@@ -2,16 +2,14 @@ var express = require('express');
 
 var app = express();
 
-var mysql = require('mysql');
-
 var bodyParser = require('body-parser');
 
-var router = require('./router');
+var streets = require('./streets');
 
 app.use(express.static('./../client/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use('/streets', router);
+app.use('/streets', streets);
 
 app.listen(3000, function(){
   console.log('Listening on port 3000');

@@ -17,16 +17,23 @@ $('.container_of_streets').on('click', '.street_header_td', function(){
 
     // показать или спрятать форму редактирования конкретрой улицы
 $('.container_of_streets').on('click', '.show_edit_form_table', function(){
+    var streetTr = $(this).closest('tr');
+
+    var thisStreet = {
+       this_street_name_new: streetTr.find('td:nth-child(1)').text(),
+       this_street_name_old: streetTr.find('td:nth-child(2)').text(),
+       this_street_district: streetTr.find('td:nth-child(4)').text(),
+       this_street_comments: streetTr.find('td:nth-child(3)').text()
+    };
     
-    var divEditThisStreet = $('<div></div>').addClass('edit_this_street');
-    $(this).closest('.street_header').after(divEditThisStreet);
-    var thisStreet = {};
+    var street_article = $(this).closest('.street_article');
+    var streetHeader = street_article.find('.street_header');
+    var editThisStreet = street_article.find('.edit_this_street');
     
-    var editThisStreet = $(this).closest('.street_article').find('.edit_this_street');
     editThisStreet.empty();
     editThisStreet.append(createEditThisStreetForm(thisStreet));
     showHide(editThisStreet);
-    console.log('click');
+    console.log(editThisStreet);
 })
     // показать или спрятать части формы для редактирования улицы
 $('.container_of_streets').on('click', '.change_button_edit_street_form', function(){
